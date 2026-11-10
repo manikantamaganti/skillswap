@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillSwap – Student Skill Enhancement and Peer Learning Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+</head>
+<body>
+
+  <!-- Public Navigation Bar -->
+  <header class="public-nav">
+    <div class="container nav-flex">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔄</div>
+        <div>Skill<span>Swap</span></div>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="find_partners.html" class="nav-link">Find Partners</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#popular-skills" class="nav-link">Skills</a></li>
+      </ul>
+
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section style="background: var(--gradient-subtle); padding: 5rem 0 4rem; border-bottom: 1px solid var(--border);">
+    <div class="container" style="display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 3rem;">
+      <div>
+        <span class="badge badge-match" style="margin-bottom: 1rem; font-size: 0.85rem; padding: 0.35rem 0.85rem;">
+          ✨ Student Skill Barter & Collaborative Learning
+        </span>
+        <h1 style="font-size: 3.25rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem;">
+          Share Your Skills, <span style="background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Learn Something New.</span>
+        </h1>
+        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
+          SkillSwap is a student-to-student peer education platform. Teach what you excel at—like Java, Python, or Web Design—and connect with peers who teach what you want to master. Zero cost, 100% collaborative.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="register.html" class="btn btn-primary btn-lg">Join SkillSwap Free ➔</a>
+          <a href="find_partners.html" class="btn btn-secondary btn-lg">Explore Student Directory</a>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="card" style="padding: 2rem; box-shadow: var(--shadow-xl); border: 1px solid var(--border-focus); margin: 0;">
+        <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 1rem;">
+          ⚡ Live Reciprocal Skill Exchange
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-body); padding: 1.25rem; border-radius: var(--radius-md); border: 1px dashed var(--border-focus); margin-bottom: 1rem;">
+          <div style="text-align: center;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 0.4rem;">RS</div>
+            <strong style="font-size: 0.95rem;">Rahul S.</strong>
+            <div style="font-size: 0.78rem; color: var(--success); font-weight: 600;">Teaches: Java</div>
+          </div>
+          <div style="font-size: 1.5rem; color: var(--purple); font-weight: 800;">⇄</div>
+          <div style="text-align: center;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--purple); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 0.4rem;">PP</div>
+            <strong style="font-size: 0.95rem;">Priya P.</strong>
+            <div style="font-size: 0.78rem; color: var(--purple); font-weight: 600;">Teaches: Python</div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          <strong>Intelligent Match:</strong> Rahul knows Java and wants to learn Python. Priya knows Python and wants to learn Java. SkillSwap pairs them for reciprocal peer tutoring!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Statistics -->
+  <section style="padding: 3rem 0; background: white; border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; text-align: center;">
+        <div>
+          <h2 style="font-size: 2.5rem; color: var(--primary); font-weight: 800;">1,500+</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Registered Students</p>
+        </div>
+        <div>
+          <h2 style="font-size: 2.5rem; color: var(--purple); font-weight: 800;">120+</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Skills Offered</p>
+        </div>
+        <div>
+          <h2 style="font-size: 2.5rem; color: var(--success); font-weight: 800;">98%</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Match Compatibility</p>
+        </div>
+        <div>
+          <h2 style="font-size: 2.5rem; color: var(--info); font-weight: 800;">3,200+</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Learning Sessions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How SkillSwap Works -->
+  <section id="how-it-works" style="padding: 5rem 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+        <span style="color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Seamless Collaboration</span>
+        <h2 style="font-size: 2.25rem; margin-top: 0.25rem;">How SkillSwap Works</h2>
+        <p style="color: var(--text-muted);">Master new skills by trading your own knowledge in four simple steps.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card" style="margin: 0; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem;">👤</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">1. Create Profile</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Register with your college details, department, and academic year.</p>
+        </div>
+
+        <div class="card" style="margin: 0; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--purple-light); color: var(--purple); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem;">💡</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">2. Add Skills</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">List the skills you can teach and specify what you want to learn.</p>
+        </div>
+
+        <div class="card" style="margin: 0; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--success-light); color: var(--success); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem;">🤝</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">3. Connect & Chat</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Find matched peers, send exchange requests, and chat in real time.</p>
+        </div>
+
+        <div class="card" style="margin: 0; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--info-light); color: var(--info); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1.25rem;">📅</div>
+          <h4 style="font-size: 1.15rem; margin-bottom: 0.5rem;">4. Host Sessions</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Schedule learning sessions with meeting links to study together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Skills Section -->
+  <section id="popular-skills" style="padding: 5rem 0; background: #f1f5f9;">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 3.5rem;">
+        <span style="color: var(--purple); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Trending Fields</span>
+        <h2 style="font-size: 2.25rem; margin-top: 0.25rem;">Popular Skills Exchanged</h2>
+        <p style="color: var(--text-muted);">Explore high-demand technical and creative skills on the platform.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="margin: 0;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">☕</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem;">Java & OOP</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Core Object-Oriented Programming, collections, Spring framework, and data structures.</p>
+          <a href="find_partners.html?skill=Java" class="btn btn-secondary btn-sm">Find Java Peers →</a>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐍</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem;">Python Programming</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Data processing, machine learning foundations, web backends, and scripting.</p>
+          <a href="find_partners.html?skill=Python" class="btn btn-secondary btn-sm">Find Python Peers →</a>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌐</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem;">Web Development</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Responsive HTML5, CSS3 Grid/Flexbox, JavaScript DOM, React JS, and REST APIs.</p>
+          <a href="find_partners.html?category=Web%20Development" class="btn btn-secondary btn-sm">Find Web Devs →</a>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">📊</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem;">SQL & Databases</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Relational database design, complex joins, indexing, MySQL, and schema normalization.</p>
+          <a href="find_partners.html?skill=SQL" class="btn btn-secondary btn-sm">Find SQL Peers →</a>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem;">Machine Learning</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Supervised & unsupervised algorithms, feature engineering, and neural network basics.</p>
+          <a href="find_partners.html?category=Data%20Science%20%26%20AI" class="btn btn-secondary btn-sm">Find ML Mentors →</a>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎨</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 0.35rem;">Graphic & UI/UX Design</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Figma interactive wireframing, color theory, typography, design systems, and Canva.</p>
+          <a href="find_partners.html?category=Design%20%26%20UI/UX" class="btn btn-secondary btn-sm">Find Designers →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Testimonials -->
+  <section style="padding: 5rem 0;">
+    <div class="container">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 3rem;">
+        <span style="color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Community Feedback</span>
+        <h2 style="font-size: 2.25rem; margin-top: 0.25rem;">Student Success Stories</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="margin: 0;">
+          <div style="color: #f59e0b; margin-bottom: 0.5rem;">★★★★★</div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
+            "Rahul taught me Java OOP concepts for my semester lab exam, while I helped him with Python pandas scripts. The reciprocal format keeps both of us motivated!"
+          </p>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: var(--purple); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">PP</div>
+            <div>
+              <strong style="font-size: 0.92rem;">Priya Patel</strong>
+              <div style="font-size: 0.78rem; color: var(--text-light);">Information Technology • 3rd Year</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="color: #f59e0b; margin-bottom: 0.5rem;">★★★★★</div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
+            "Connecting on SkillSwap and scheduling live sessions on the Sessions tab made learning responsive CSS and JavaScript so practical. Highly recommended!"
+          </p>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">KR</div>
+            <div>
+              <strong style="font-size: 0.92rem;">Kiran Rao</strong>
+              <div style="font-size: 0.78rem; color: var(--text-light);">Computer Science • 2nd Year</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin: 0;">
+          <div style="color: #f59e0b; margin-bottom: 0.5rem;">★★★★★</div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;">
+            "The direct chat feature and structured learning session calendar allow us to organize weekly study groups effortlessly without leaving the platform."
+          </p>
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <div style="width: 38px; height: 38px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700;">AK</div>
+            <div>
+              <strong style="font-size: 0.92rem;">Arun Kumar</strong>
+              <div style="font-size: 0.78rem; color: var(--text-light);">Information Science • 4th Year</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #0f172a; color: #94a3b8; padding: 4rem 0 2rem; font-size: 0.92rem;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 0.6rem; color: white; font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem;">
+            <div class="brand-icon" style="width: 32px; height: 32px; font-size: 1rem;">🔄</div>
+            SkillSwap
+          </div>
+          <p style="max-width: 380px; line-height: 1.6;">
+            A student-to-student peer learning and skill exchange network designed to foster collaborative academic growth and project collaboration.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">Quick Navigation</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><a href="index.html" style="color: #94a3b8;">Home</a></li>
+            <li><a href="find_partners.html" style="color: #94a3b8;">Find Partners</a></li>
+            <li><a href="login.html" style="color: #94a3b8;">Student Login</a></li>
+            <li><a href="register.html" style="color: #94a3b8;">Register Account</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">Project Information</h4>
+          <p style="margin-bottom: 0.4rem;">CSE Mini Project Prototype</p>
+          <p style="margin-bottom: 0.4rem;">Python • Flask • MySQL • Vanilla JS</p>
+          <p style="color: var(--primary);">contact@skillswap.edu</p>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid #1e293b; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem;">
+        <div>&copy; 2026 SkillSwap Platform. All rights reserved.</div>
+        <div>Tagline: <em>"Share Your Skills, Learn Something New."</em></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat & Direct Messages – SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">🔄</div>
+        <div class="sidebar-brand-text">Skill<span>Swap</span></div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-label">Navigation</li>
+        <li class="sidebar-item"><a href="dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a></li>
+        <li class="sidebar-item"><a href="skills.html" class="sidebar-link"><span class="sidebar-icon">💡</span> My Skills</a></li>
+        <li class="sidebar-item"><a href="find_partners.html" class="sidebar-link"><span class="sidebar-icon">🔍</span> Find Partners</a></li>
+        <li class="sidebar-item"><a href="requests.html" class="sidebar-link"><span class="sidebar-icon">🤝</span> Exchange Requests</a></li>
+        <li class="sidebar-item"><a href="chat.html" class="sidebar-link active"><span class="sidebar-icon">💬</span> Chat & Messages</a></li>
+        <li class="sidebar-item"><a href="sessions.html" class="sidebar-link"><span class="sidebar-icon">📅</span> Learning Sessions</a></li>
+        <li class="sidebar-label">Account</li>
+        <li class="sidebar-item"><a href="notifications.html" class="sidebar-link"><span class="sidebar-icon">🔔</span> Notifications <span class="sidebar-badge" id="sidebar-notif-badge" style="display: none;">0</span></a></li>
+        <li class="sidebar-item"><a href="profile.html" class="sidebar-link"><span class="sidebar-icon">👤</span> My Profile</a></li>
+        <li class="sidebar-item" id="sidebar-admin-item" style="display: none;"><a href="admin.html" class="sidebar-link"><span class="sidebar-icon">🛡️</span> Admin Portal</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-avatar" id="sidebar-user-avatar">SS</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+          <div class="sidebar-user-role" id="sidebar-user-role">Student</div>
+        </div>
+        <button onclick="handleLogout()" title="Logout" style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.15rem;">🚪</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-sidebar-toggle">☰</button>
+          <div class="page-heading">
+            <h2>Peer Messaging & Chat</h2>
+            <p>Coordinate learning sessions and collaborate with connected students</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="sessions.html" class="btn btn-secondary btn-sm">Schedule Session 📅</a>
+        </div>
+      </header>
+
+      <main class="page-content" style="padding: 1.5rem 2rem;">
+        <div class="chat-container">
+          <!-- Left Contacts List -->
+          <div class="chat-contacts">
+            <div class="chat-contacts-header">
+              Connected Peers
+            </div>
+            <ul class="contacts-list" id="chat-contacts-list">
+              <li style="padding: 1rem; color: var(--text-muted);">Loading contacts...</li>
+            </ul>
+          </div>
+
+          <!-- Right Conversation Area -->
+          <div class="chat-main">
+            <div class="chat-header">
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <div id="chat-active-avatar"></div>
+                <div>
+                  <h4 id="chat-active-name" style="margin: 0; font-size: 1rem;">Select a Peer</h4>
+                  <div id="chat-active-dept" style="font-size: 0.8rem; color: var(--text-muted);">Connected Student</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="chat-messages" id="chat-messages-container">
+              <div style="text-align: center; color: var(--text-muted); margin: auto;">
+                Select a connected student from the left panel to begin chatting.
+              </div>
+            </div>
+
+            <!-- Input Bar -->
+            <form id="chat-form" class="chat-input-bar">
+              <input type="text" id="chat-message-input" class="form-control" placeholder="Type a message to your learning partner..." required autocomplete="off">
+              <button type="submit" class="btn btn-primary btn-sm" style="padding: 0 1.25rem;">Send ➔</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initChat);
+  </script>
+</body>
+</html>
+

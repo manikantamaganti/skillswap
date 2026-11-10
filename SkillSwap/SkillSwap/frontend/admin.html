@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon" style="width: 36px; height: 36px; font-size: 1.1rem; background: var(--purple);">🛡️</div>
+        <div class="sidebar-brand-text">Admin<span>Panel</span></div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-label">Platform Control</li>
+        <li class="sidebar-item"><a href="admin.html" class="sidebar-link active"><span class="sidebar-icon">📊</span> Platform Overview</a></li>
+        <li class="sidebar-item"><a href="dashboard.html" class="sidebar-link"><span class="sidebar-icon">🎓</span> Student View</a></li>
+        <li class="sidebar-item"><a href="skills.html" class="sidebar-link"><span class="sidebar-icon">💡</span> Master Skills</a></li>
+        <li class="sidebar-item"><a href="find_partners.html" class="sidebar-link"><span class="sidebar-icon">🔍</span> Student Directory</a></li>
+        <li class="sidebar-label">Session</li>
+        <li class="sidebar-item"><a href="javascript:void(0)" onclick="handleLogout()" class="sidebar-link"><span class="sidebar-icon">🚪</span> Sign Out</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-avatar" id="sidebar-user-avatar" style="background: var(--purple);">AD</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">System Administrator</div>
+          <div class="sidebar-user-role" id="sidebar-user-role">Administrator</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-sidebar-toggle">☰</button>
+          <div class="page-heading">
+            <h2>Platform Administration</h2>
+            <p>System metrics, user management, and platform oversight</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <button class="btn btn-purple btn-sm" onclick="openModal('add-skill-modal')">+ Add Master Skill</button>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <!-- 4 Platform Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">👥</div>
+            <div class="stat-data">
+              <h3 id="admin-stat-students">0</h3>
+              <p>Registered Students</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">💡</div>
+            <div class="stat-data">
+              <h3 id="admin-stat-skills">0</h3>
+              <p>Total Master Skills</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon amber">🤝</div>
+            <div class="stat-data">
+              <h3 id="admin-stat-requests">0</h3>
+              <p>Exchange Requests</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">📅</div>
+            <div class="stat-data">
+              <h3 id="admin-stat-sessions">0</h3>
+              <p>Active Learning Sessions</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Management Table -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <div class="card-header-flex">
+            <h3 class="card-title">👥 Manage Student Accounts</h3>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+              <thead>
+                <tr style="background: var(--bg-body); text-align: left;">
+                  <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">Name</th>
+                  <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">Email</th>
+                  <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">College</th>
+                  <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">Department</th>
+                  <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">Status</th>
+                  <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body">
+                <tr><td colspan="6" style="padding: 1.5rem; text-align: center; color: var(--text-muted);">Loading students...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Platform Activity Log -->
+        <div class="card">
+          <div class="card-header-flex">
+            <h3 class="card-title">📜 Recent Platform Activity</h3>
+          </div>
+          <div id="admin-activity-list">
+            Loading activity log...
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add Skill Modal -->
+  <div class="modal-overlay" id="add-skill-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Add Skill to Master Catalog</h3>
+        <button class="modal-close-btn" onclick="closeModal('add-skill-modal')">&times;</button>
+      </div>
+      <form onsubmit="handleAdminAddSkill(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="admin-new-skill-name">Skill Name *</label>
+            <input type="text" id="admin-new-skill-name" class="form-control" placeholder="e.g. Kotlin, Rust, Cybersecurity" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="admin-new-skill-cat">Category *</label>
+            <select id="admin-new-skill-cat" class="form-control" required>
+              <option value="Programming">Programming</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Databases">Databases</option>
+              <option value="Data Science & AI">Data Science & AI</option>
+              <option value="Design & UI/UX">Design & UI/UX</option>
+              <option value="Soft Skills">Soft Skills</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('add-skill-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Add Skill ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initAdmin);
+
+    async function handleAdminAddSkill(e) {
+      e.preventDefault();
+      const name = document.getElementById('admin-new-skill-name').value.trim();
+      const cat = document.getElementById('admin-new-skill-cat').value;
+
+      const res = await apiCall('/api/admin/skills', {
+        method: 'POST',
+        data: { skill_name: name, category: cat }
+      });
+
+      if (res.ok && res.success) {
+        showToast(res.message, 'success');
+        closeModal('add-skill-modal');
+        loadAdminStats();
+      } else {
+        showToast(res.message || 'Error adding skill', 'error');
+      }
+    }
+  </script>
+</body>
+</html>
+
