@@ -3,3 +3,4 @@ Flask-Cors==6.0.5
 mysql-connector-python==26.10.0
 Werkzeug==3.1.9
 gunicorn==23.0.0
+
