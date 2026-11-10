@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Learning Partners – SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">🔄</div>
+        <div class="sidebar-brand-text">Skill<span>Swap</span></div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-label">Navigation</li>
+        <li class="sidebar-item"><a href="dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a></li>
+        <li class="sidebar-item"><a href="skills.html" class="sidebar-link"><span class="sidebar-icon">💡</span> My Skills</a></li>
+        <li class="sidebar-item"><a href="find_partners.html" class="sidebar-link active"><span class="sidebar-icon">🔍</span> Find Partners</a></li>
+        <li class="sidebar-item"><a href="requests.html" class="sidebar-link"><span class="sidebar-icon">🤝</span> Exchange Requests</a></li>
+        <li class="sidebar-item"><a href="chat.html" class="sidebar-link"><span class="sidebar-icon">💬</span> Chat & Messages</a></li>
+        <li class="sidebar-item"><a href="sessions.html" class="sidebar-link"><span class="sidebar-icon">📅</span> Learning Sessions</a></li>
+        <li class="sidebar-label">Account</li>
+        <li class="sidebar-item"><a href="notifications.html" class="sidebar-link"><span class="sidebar-icon">🔔</span> Notifications <span class="sidebar-badge" id="sidebar-notif-badge" style="display: none;">0</span></a></li>
+        <li class="sidebar-item"><a href="profile.html" class="sidebar-link"><span class="sidebar-icon">👤</span> My Profile</a></li>
+        <li class="sidebar-item" id="sidebar-admin-item" style="display: none;"><a href="admin.html" class="sidebar-link"><span class="sidebar-icon">🛡️</span> Admin Portal</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-avatar" id="sidebar-user-avatar">SS</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+          <div class="sidebar-user-role" id="sidebar-user-role">Student</div>
+        </div>
+        <button onclick="handleLogout()" title="Logout" style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.15rem;">🚪</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-sidebar-toggle">☰</button>
+          <div class="page-heading">
+            <h2>Find Learning Partners</h2>
+            <p>Discover peers with complementary teaching and learning interests</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <a href="requests.html" class="btn btn-secondary btn-sm">View My Requests</a>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <!-- Search & Filter Controls -->
+        <div class="card" style="padding: 1.25rem;">
+          <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem;">
+            <div>
+              <label class="form-label" for="partner-search-input">Search by Skill or Name</label>
+              <input type="text" id="partner-search-input" class="form-control" placeholder="e.g. Java, Python, SQL, Rahul...">
+            </div>
+
+            <div>
+              <label class="form-label" for="partner-dept-filter">Filter by Department</label>
+              <select id="partner-dept-filter" class="form-control" onchange="loadPartners()">
+                <option value="all">All Departments</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label" for="partner-category-filter">Filter by Skill Category</label>
+              <select id="partner-category-filter" class="form-control" onchange="loadPartners()">
+                <option value="all">All Categories</option>
+                <option value="Programming">Programming</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Databases">Databases</option>
+                <option value="Data Science & AI">Data Science & AI</option>
+                <option value="Design & UI/UX">Design & UI/UX</option>
+                <option value="Soft Skills">Soft Skills</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Cards Grid -->
+        <div class="grid-3" id="partners-grid">
+          Loading student discovery directory...
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Proposal Modal -->
+  <div class="modal-overlay" id="exchange-request-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Send Skill Exchange Request</h3>
+        <button class="modal-close-btn" onclick="closeModal('exchange-request-modal')">&times;</button>
+      </div>
+      <form onsubmit="submitExchangeRequest(event)">
+        <div class="modal-body">
+          <input type="hidden" id="modal-receiver-id">
+          <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Propose a collaborative skill barter with <strong id="modal-receiver-name" style="color: var(--text-main);">Partner</strong>
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="modal-skill-offered">Skill You Can Teach Them *</label>
+            <input type="text" id="modal-skill-offered" class="form-control" placeholder="e.g. Java, Python, HTML/CSS" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modal-skill-requested">Skill You Want To Learn From Them *</label>
+            <input type="text" id="modal-skill-requested" class="form-control" placeholder="e.g. Python, SQL, UI Design" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="modal-request-message">Introduction Note (Optional)</label>
+            <textarea id="modal-request-message" class="form-control" placeholder="Hi! I would love to connect and exchange knowledge..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('exchange-request-modal')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Send Request ➔</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initFindPartners);
+  </script>
+</body>
+</html>
+

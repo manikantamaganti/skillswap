@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile – SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">🔄</div>
+        <div class="sidebar-brand-text">Skill<span>Swap</span></div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-label">Navigation</li>
+        <li class="sidebar-item"><a href="dashboard.html" class="sidebar-link"><span class="sidebar-icon">📊</span> Dashboard</a></li>
+        <li class="sidebar-item"><a href="skills.html" class="sidebar-link"><span class="sidebar-icon">💡</span> My Skills</a></li>
+        <li class="sidebar-item"><a href="find_partners.html" class="sidebar-link"><span class="sidebar-icon">🔍</span> Find Partners</a></li>
+        <li class="sidebar-item"><a href="requests.html" class="sidebar-link"><span class="sidebar-icon">🤝</span> Exchange Requests</a></li>
+        <li class="sidebar-item"><a href="chat.html" class="sidebar-link"><span class="sidebar-icon">💬</span> Chat & Messages</a></li>
+        <li class="sidebar-item"><a href="sessions.html" class="sidebar-link"><span class="sidebar-icon">📅</span> Learning Sessions</a></li>
+        <li class="sidebar-label">Account</li>
+        <li class="sidebar-item"><a href="notifications.html" class="sidebar-link"><span class="sidebar-icon">🔔</span> Notifications <span class="sidebar-badge" id="sidebar-notif-badge" style="display: none;">0</span></a></li>
+        <li class="sidebar-item"><a href="profile.html" class="sidebar-link active"><span class="sidebar-icon">👤</span> My Profile</a></li>
+        <li class="sidebar-item" id="sidebar-admin-item" style="display: none;"><a href="admin.html" class="sidebar-link"><span class="sidebar-icon">🛡️</span> Admin Portal</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-avatar" id="sidebar-user-avatar">SS</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebar-user-name">Loading...</div>
+          <div class="sidebar-user-role" id="sidebar-user-role">Student</div>
+        </div>
+        <button onclick="handleLogout()" title="Logout" style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 1.15rem;">🚪</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <button class="mobile-menu-btn" id="mobile-sidebar-toggle">☰</button>
+          <div class="page-heading">
+            <h2>Student Profile</h2>
+            <p>View your public profile and update personal details</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <!-- Profile Overview Card -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+            <div id="profile-avatar-box"></div>
+            <div>
+              <h2 id="profile-name" style="font-size: 1.85rem; margin-bottom: 0.25rem;">Student Name</h2>
+              <div id="profile-meta" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                Department • Year (College Name)
+              </div>
+              <p id="profile-bio-text" style="font-size: 0.92rem; color: var(--text-main); max-width: 650px; line-height: 1.6;">
+                Loading bio...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Skills Display -->
+          <div class="card">
+            <div class="card-header-flex">
+              <h3 class="card-title">💡 Skills Overview</h3>
+              <a href="skills.html" class="btn btn-secondary btn-sm">Edit Skills</a>
+            </div>
+
+            <div style="margin-bottom: 1.25rem;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--success); text-transform: uppercase; margin-bottom: 0.35rem;">
+                Skills I Can Teach:
+              </div>
+              <div id="profile-teaching-skills" style="display: flex; flex-wrap: wrap; gap: 0.4rem;"></div>
+            </div>
+
+            <div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--purple); text-transform: uppercase; margin-bottom: 0.35rem;">
+                Skills I Want to Learn:
+              </div>
+              <div id="profile-learning-skills" style="display: flex; flex-wrap: wrap; gap: 0.4rem;"></div>
+            </div>
+          </div>
+
+          <!-- Edit Profile Form -->
+          <div class="card">
+            <div class="card-header-flex">
+              <h3 class="card-title">📝 Edit Personal Details</h3>
+            </div>
+
+            <form id="profile-update-form">
+              <div class="form-group">
+                <label class="form-label" for="edit-fullname">Full Name *</label>
+                <input type="text" id="edit-fullname" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="edit-college">College / University *</label>
+                <input type="text" id="edit-college" class="form-control" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="edit-department">Department *</label>
+                  <input type="text" id="edit-department" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="edit-year">Year of Study *</label>
+                  <select id="edit-year" class="form-control" required>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="edit-bio">Short Bio & Academic Interests</label>
+                <textarea id="edit-bio" class="form-control" rows="3"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', initProfile);
+  </script>
+</body>
+</html>
+

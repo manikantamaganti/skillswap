@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student & Admin Login – SkillSwap</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+
+  <!-- Public Navbar -->
+  <header class="public-nav">
+    <div class="container nav-flex">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔄</div>
+        <div>Skill<span>Swap</span></div>
+      </a>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="register.html" class="btn btn-primary btn-sm">Create Account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Main Container -->
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; background: var(--gradient-subtle);">
+    <div class="card" style="width: 100%; max-width: 480px; padding: 2.5rem; box-shadow: var(--shadow-xl); border: 1px solid var(--border);">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="brand-icon" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; font-size: 1.5rem;">🔄</div>
+        <h2 style="font-size: 1.85rem; margin-bottom: 0.35rem;">Welcome Back</h2>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Log in to your SkillSwap student or admin portal</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="login_email">College Email Address *</label>
+          <input type="email" id="login_email" class="form-control" placeholder="e.g. rahul@college.edu" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+            <label class="form-label" for="login_password" style="margin-bottom: 0;">Password *</label>
+            <a href="javascript:void(0)" onclick="showToast('For testing, sample passwords are: password123 (students) or admin123 (admin)', 'info')" style="font-size: 0.8rem; color: var(--primary);">Forgot Password?</a>
+          </div>
+          <input type="password" id="login_password" class="form-control" placeholder="Enter your password" required autocomplete="current-password">
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem;">
+          <input type="checkbox" id="remember_me" style="cursor: pointer;">
+          <label for="remember_me" style="font-size: 0.88rem; color: var(--text-muted); cursor: pointer;">Remember Me</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-submit-btn">
+          Sign In ➔
+        </button>
+      </form>
+
+      <!-- 1-Click Demo Accounts for Testing & Evaluation -->
+      <div style="background: var(--bg-body); border: 1px dashed var(--border-focus); border-radius: var(--radius-md); padding: 1rem; margin-top: 1.5rem;">
+        <h5 style="font-size: 0.85rem; color: var(--primary); margin-bottom: 0.35rem;">⚡ 1-Click Fast Login for Testing:</h5>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+          Click any persona below to auto-fill credentials:
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="quickFill('rahul@college.edu', 'password123')">
+            Rahul (Java ⇄ Python)
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="quickFill('priya@college.edu', 'password123')">
+            Priya (Python ⇄ Java)
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="quickFill('kiran@college.edu', 'password123')">
+            Kiran (HTML/CSS ⇄ JS)
+          </button>
+          <button type="button" class="btn btn-purple btn-sm" onclick="quickFill('admin@skillswap.edu', 'admin123')">
+            🛡️ Admin Portal
+          </button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+        Don't have an account yet? <a href="register.html" style="font-weight: 700;">Register here</a>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 1.5rem; font-size: 0.85rem; color: var(--text-light); border-top: 1px solid var(--border);">
+    &copy; 2026 SkillSwap Platform. Secure Student Skill Exchange.
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    function quickFill(email, pwd) {
+      document.getElementById('login_email').value = email;
+      document.getElementById('login_password').value = pwd;
+      showToast(`Credentials filled for ${email}`, 'info');
+    }
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login_email').value.trim();
+      const password = document.getElementById('login_password').value;
+      const remember_me = document.getElementById('remember_me').checked;
+      const btn = document.getElementById('login-submit-btn');
+
+      btn.disabled = true;
+      btn.textContent = 'Authenticating...';
+
+      const res = await apiCall('/api/auth/login', {
+        method: 'POST',
+        data: { email, password, remember_me }
+      });
+
+      btn.disabled = false;
+      btn.textContent = 'Sign In ➔';
+
+      if (res.ok && res.success) {
+        showToast(res.message, 'success');
+        setTimeout(() => {
+          if (res.user.role === 'admin') {
+            window.location.href = 'admin.html';
+          } else {
+            window.location.href = 'dashboard.html';
+          }
+        }, 500);
+      } else {
+        showToast(res.message || 'Login failed. Invalid credentials.', 'error');
+      }
+    });
+  </script>
+</body>
+</html>
+
